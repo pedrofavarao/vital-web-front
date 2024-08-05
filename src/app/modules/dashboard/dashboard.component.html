@@ -1,0 +1,157 @@
+<main class="dashboard-container">
+  <header class="project-name">
+    <h1>vital web app</h1>
+    <h2>
+      desenvolvido por
+      <a
+        href="https://github.com/pedrofavarao"
+        target="_blank"
+        title="github.com/pedrofavarao"
+        >pedro favarao</a
+      >
+    </h2>
+  </header>
+
+  <section class="content">
+    <div class="data-table">
+      <label>Lista geral de doadores</label>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>sobrenome</th>
+            <th>genero</th>
+            <th>idade</th>
+            <th>peso</th>
+            <th>altura</th>
+            <th>imc</th>
+            <th>cidade</th>
+            <th>estado</th>
+            <th>tipo sanguineo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let donator of this.data">
+            <td id="id">{{ this.donator.id }}</td>
+            <td id="firstName">{{ this.donator.firstName }}</td>
+            <td id="lastName">{{ this.donator.lastName }}</td>
+            <td id="gender">{{ this.donator.gender }}</td>
+            <td id="age">{{ this.donator.age }}</td>
+            <td id="weight">{{ this.donator.weight }} kg</td>
+            <td id="height">{{ this.donator.height }} cm</td>
+            <td id="imc">{{ this.donator.imc | number:'1.2-2'}}</td>
+            <td id="city">{{ this.donator.address.city }}</td>
+            <td id="state">{{ this.donator.address.state }}</td>
+            <td id="bloodType">{{ this.donator.bloodType }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mult-table">
+      <div class="data-table">
+      <label>Doadores por estado</label>
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>estado</th>
+              <th>quantidade de cantidatos</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let state of this.dataState | keyvalue">
+              <td id="state">{{ state.key }}</td>
+              <td id="donators">{{ state.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="data-table">
+      <label>IMC medio por idade</label>
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>faixa etaria</th>
+              <th>imc medio</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let imc of this.dataImcAverage">
+              <td>{{this.imc.ageRange}}</td>
+              <td>{{this.imc.averageIMC}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="data-table">
+      <label>Percentual de obesidade por genero</label>
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>genero</th>
+              <th>percentual</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let percent of this.dataObesityPercent">
+              <td>{{this.percent.gender.toLowerCase() == 'm'? 'homens' : 'mulheres'}}</td>
+              <td>{{this.percent.percentage | number:'1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mult-table">
+      <div class="data-table">
+      <label>Media idade por tipo sanguineo</label>
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>tipo</th>
+              <th>media idade</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let avg of this.dataAverageAgeByBloodType">
+              <td>{{avg.bloodType}}</td>
+              <td>{{avg.averageAge}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="data-table">
+      <label>Possiveis doadores</label>
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>tipo</th>
+              <th>quantidade possiveis doadores</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let donors of this.dataPossibleDonors">
+              <td>{{this.donors.bloodType}}</td>
+              <td>{{this.donors.donorCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
